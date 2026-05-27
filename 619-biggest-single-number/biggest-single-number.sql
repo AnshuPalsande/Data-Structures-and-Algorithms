@@ -1,4 +1,4 @@
 -- Write your PostgreSQL query statement below
-SELECT MAX(num) AS num
-FROM (SELECT num,COUNT(*) OVER(PARTITION BY num) AS cnt FROM MyNumbers) t
-WHERE cnt = 1;
+-- PostgreSQL : FILTER Clause
+SELECT MAX(num) FILTER (WHERE freq = 1) AS num
+FROM (SELECT num,COUNT(*) AS freq FROM MyNumbers GROUP BY num) t;
