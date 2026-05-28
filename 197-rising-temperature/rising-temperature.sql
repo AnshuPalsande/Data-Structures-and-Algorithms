@@ -1,3 +1,6 @@
 -- Write your PostgreSQL query statement below
-SELECT today.id FROM Weather as today
-WHERE EXISTS (SELECT 1 FROM Weather as yesterday WHERE yesterday.temperature < today.temperature AND today.recordDate - yesterday.recordDate = 1)
+SELECT w1.id
+FROM Weather w1
+JOIN Weather w2
+ON w1.recordDate = w2.recordDate + 1
+WHERE w1.temperature > w2.temperature;
